@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428003320486",
+    "project_id": "ncu-service-test",
+    "storage_bucket": "ncu-service-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428003320486:android:3165958c2836e7cbc40a67",
+        "android_client_info": {
+          "package_name": "com.example.the_basics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428003320486-a04dmeqjp24ikrkt29cu88e2slg8pqmm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMakWbjUOtyhQyVxwmSgTOri1dXMNOt10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428003320486-a04dmeqjp24ikrkt29cu88e2slg8pqmm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
