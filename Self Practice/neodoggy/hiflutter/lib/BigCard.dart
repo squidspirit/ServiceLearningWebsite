@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 
 class BigCard extends StatelessWidget {
-
   BigCard({
     super.key,
     required this.card,
@@ -24,6 +23,8 @@ class BigCard extends StatelessWidget {
 
     return Card(
       color: Color(0xFF3a3a3a),
+      elevation: 10,
+      shadowColor: Color(0xFF151515),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
         child: Text(

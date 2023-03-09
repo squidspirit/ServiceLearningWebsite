@@ -13,12 +13,12 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void listCur(){
-    print('--');
-    for(WordPair s in favorites){
-      print(s);
-    }
-  }
+  // void listCur(){
+  //   print('--');
+  //   for(WordPair s in favorites){
+  //     print(s);
+  //   }
+  // }
 
   void addFavorite() {
     if (!favorites.contains(current)) {
