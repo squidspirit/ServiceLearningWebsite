@@ -40,209 +40,336 @@ class _MyStatefulWidgetState extends State<MyHomePage>
 
     return Scaffold(
       drawer: NavBar(),
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Icon(Icons.logo_dev),
-            SizedBox(width: 3),
-            Text('ServiceSite_LOGO'),
-          ],
-        ),
-        backgroundColor: Color(0xFF1f1f1f),
-        elevation: 0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              children: [
-                Builder(builder: (BuildContext context) {
-                  return IconButton(
-                      onPressed: () {},
-                      tooltip: 'Show Favourites',
-                      icon: Icon(Icons.favorite));
-                }),
-                SizedBox(width: 10),
-                Icon(Icons.account_circle),
-                SizedBox(width: 10),
-                // Icon(Icons.more_vert),
+      body:NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: Row(
+                children: [
+                  Icon(Icons.logo_dev),
+                  SizedBox(width: 3),
+                  Text('ServiceSite_LOGO'),
+                ],
+              ),
+              backgroundColor: Color(0xFF1f1f1f),
+              pinned: false,
+              elevation: 0,
+              //floating: true,
+              //forceElevated: innerBoxIsScrolled,
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Row(
+                    children: [
+                      Builder(builder: (BuildContext context) {
+                        return IconButton(
+                            onPressed: () {},
+                            tooltip: 'Show Favourites',
+                            icon: Icon(Icons.favorite));
+                      }),
+                      SizedBox(width: 10),
+                      Icon(Icons.account_circle),
+                      SizedBox(width: 10),
+                      // Icon(Icons.more_vert),
+                    ],
+                  ),
+                ),
               ],
-            ),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(56),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Container(
-              padding: EdgeInsets.only(left: 50),
-              child: Theme(
-                data: ThemeData().copyWith(splashColor: Colors.transparent),
-                child: TabBar(
-                  overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                  // enableFeedback: true,
-                  isScrollable: true,
-                  unselectedLabelColor: Color(0xFF858585),
-                  controller: _tabController,
-                  indicatorColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 3.0, color: Color(0xFF00ba7c)),
-                      // bottom: BorderSide(width: 16.0, color: Colors.lightBlue.shade900),
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(86),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 50),
+                    child: Theme(
+                      data: ThemeData().copyWith(splashColor: Colors.transparent),
+                      child: TabBar(
+                        overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                        // enableFeedback: true,
+                        isScrollable: true,
+                        unselectedLabelColor: Color(0xFF858585),
+                        controller: _tabController,
+                        indicatorColor: Colors.transparent,
+                        indicator: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(width: 3.0, color: Color(0xFF00ba7c)),
+                            // bottom: BorderSide(width: 16.0, color: Colors.lightBlue.shade900),
+                          ),
+                        ),
+                        // UnderlineTabIndicator(
+                        //     //borderSide: BorderSide(width: 2),
+                        //     insets: EdgeInsets.symmetric(horizontal:16.0)
+                        // ),
+                        tabs: [
+                          Tab(
+                            icon: Row(
+                              children: [
+                                Icon(Icons.home),
+                                SizedBox(width: 5,),
+                                Text("主頁"),
+                              ],
+                            ),
+                          ),
+                          Tab(
+                            icon: Row(
+                              children: [
+                                Icon(Icons.web),
+                                SizedBox(width: 5,),
+                                Text("課程"),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  // UnderlineTabIndicator(
-                  //     //borderSide: BorderSide(width: 2),
-                  //     insets: EdgeInsets.symmetric(horizontal:16.0)
-                  // ),
-                  tabs: [
-                    Tab(
-                      icon: Icon(Icons.abc),
-                    ),
-                    Tab(
-                      icon: Icon(Icons.abc),
-                    ),
-                  ],
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-      body: TabBarView(controller: _tabController, children: [
-        Column(
-          children: [
-            ShaderMask(
-              shaderCallback: (Rect rect) {
-                return LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    Color(0xFF1f1f1f),
-                    Colors.transparent,
-                    Colors.transparent,
-                    Color(0xFF1f1f1f)
-                  ],
-                  stops: [0.0, 0.1, 0.7, 1],
-                ).createShader(rect);
-              },
-              blendMode: BlendMode.dstOut,
-              child: Container(
-                height: 180,
-                padding: EdgeInsets.only(left: 50, right: 50),
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  controller: _firstController,
-                  child: ListView.builder(
-                    controller: _firstController,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color(0xFF1a1a1a),
-                          ),
-                          width: 400,
-                          height: 180,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              BigCard(card: card),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(width: 10),
-                                  LikeButton(
-                                    size: 25,
-                                    isLiked: isLiked,
-                                    likeBuilder: (isLiked) {
-                                      final color = isLiked
-                                          ? Color(0xFFff4060)
-                                          : Color(0xFFFFFFFF);
-                                      return Icon(
-                                          isLiked
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          color: color,
-                                          size: 25);
-                                    },
-                                    circleColor: const CircleColor(
-                                        start: Color(0xFFff4060),
-                                        end: Color(0xFFff4060)),
-                                    bubblesColor: const BubblesColor(
-                                      dotPrimaryColor: Color(0xFFff4060),
-                                      dotSecondaryColor: Color(0xFFff4060),
-                                    ),
-                                    onTap: (isLiked) async {
-                                      this.isLiked = !isLiked;
-                                      this.isLiked
-                                          ? appState.addFavorite()
-                                          : appState.delFavorite();
-                                      return !isLiked;
-                                    },
-                                  ),
-                                  Spacer(),
-                                  //SizedBox(width: 10),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: Size.zero,
-                                      padding: EdgeInsets.all(0),
-                                    ),
-                                    onPressed: () {
-                                      this.isLiked = false;
-                                      appState.getNext();
-                                      //appState.listCur();
-                                    },
-                                    child: AnimatedContainer(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                        color: isLiked
-                                            ? Color(0xFF00ba7c)
-                                            : Color(0xFFff4060),
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 6),
-                                      duration: Duration(milliseconds: 300),
-                                      child: Center(
-                                        child: Text(
-                                          'Next',
-                                          style: TextStyle(
-                                            color: Color(0xFFFFFFFF),
+          ];
+        },
+        body: TabBarView(controller: _tabController, children: [
+          LayoutBuilder(
+            builder:
+                (BuildContext context, BoxConstraints viewportConstraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints:
+                  BoxConstraints(minHeight: viewportConstraints.maxHeight),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 50,right: 50),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // Below are for Wrap
+                      // direction: Axis.horizontal,
+                      // spacing: 0, // gap between adjacent chips
+                      // runSpacing: 0, // gap between lines
+                      children: [
+                        SizedBox(height: 20,),
+                        Text('最新活動',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        ShaderMask(
+                          shaderCallback: (Rect rect) {
+                            return LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.topRight,
+                              colors: [
+                                Color(0xFF1f1f1f),
+                                Colors.transparent,
+                                Colors.transparent,
+                                Color(0xFF1f1f1f)
+                              ],
+                              stops: [0.0, 0.01, 0.99, 1],
+                            ).createShader(rect);
+                          },
+                          blendMode: BlendMode.dstOut,
+                          child: Container(
+                            height: 180,
+                            padding: EdgeInsets.only(right: 5),
+                            child: Scrollbar(
+                              thumbVisibility: true,
+                              controller: _firstController,
+                              child: Container(
+                                height: 180,
+                                child: ListView.builder(
+                                  controller: _firstController,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: Color(0xFF1a1a1a),
+                                        ),
+                                        width: 400,
+                                        height: 180,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Container(
+                                          height: 180,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              BigCard(card: card),
+                                              const SizedBox(
+                                                height: 15,
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  SizedBox(width: 10),
+                                                  LikeButton(
+                                                    size: 25,
+                                                    isLiked: isLiked,
+                                                    likeBuilder: (isLiked) {
+                                                      final color = isLiked
+                                                          ? Color(0xFFff4060)
+                                                          : Color(0xFFFFFFFF);
+                                                      return Icon(
+                                                          isLiked
+                                                              ? Icons.favorite
+                                                              : Icons.favorite_border,
+                                                          color: color,
+                                                          size: 25);
+                                                    },
+                                                    circleColor: const CircleColor(
+                                                        start: Color(0xFFff4060),
+                                                        end: Color(0xFFff4060)),
+                                                    bubblesColor: const BubblesColor(
+                                                      dotPrimaryColor: Color(0xFFff4060),
+                                                      dotSecondaryColor: Color(0xFFff4060),
+                                                    ),
+                                                    onTap: (isLiked) async {
+                                                      this.isLiked = !isLiked;
+                                                      this.isLiked
+                                                          ? appState.addFavorite()
+                                                          : appState.delFavorite();
+                                                      return !isLiked;
+                                                    },
+                                                  ),
+                                                  Spacer(),
+                                                  //SizedBox(width: 10),
+                                                  ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      minimumSize: Size.zero,
+                                                      padding: EdgeInsets.all(0),
+                                                    ),
+                                                    onPressed: () {
+                                                      this.isLiked = false;
+                                                      appState.getNext();
+                                                      //appState.listCur();
+                                                    },
+                                                    child: AnimatedContainer(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(3),
+                                                        color: isLiked
+                                                            ? Color(0xFF00ba7c)
+                                                            : Color(0xFFff4060),
+                                                      ),
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal: 15, vertical: 6),
+                                                      duration: Duration(milliseconds: 300),
+                                                      child: Center(
+                                                        child: Text(
+                                                          'Next',
+                                                          style: TextStyle(
+                                                            color: Color(0xFFFFFFFF),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                ],
+                                    );
+                                  },
+                                ),
                               ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                        Text('活動列表',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Container(
+                          //padding: EdgeInsets.only(left: 50),
+                          child: Column(
+                            children: [
+                              BigCard(card: card),
+                              BigCard(card: card),
                             ],
                           ),
                         ),
-                      );
-                    },
+                        SizedBox(height: 30,),
+                        Text('關於我們',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Container(
+                          //padding: EdgeInsets.only(left: 50),
+                          child: Column(
+                            children: [
+                              BigCard(card: card),
+                              BigCard(card: card),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                        Text('常見問題',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Container(
+                          //padding: EdgeInsets.only(left: 50),
+                          child: Column(
+                            children: [
+                              BigCard(card: card),
+                              BigCard(card: card),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                        Text('聯絡我們',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Container(
+                          //padding: EdgeInsets.only(left: 50),
+                          child: Column(
+                            children: [
+                              BigCard(card: card),
+                              BigCard(card: card),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ],
-        ),
-        Center(
-          child: Text(
-            "2nd page",
-            style: TextStyle(color: Color(0xFFFFFFFF)),
+              );
+            },
           ),
-        ),
-      ]),
+          LayoutBuilder(
+            builder:(BuildContext context, BoxConstraints viewportConstraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints:
+                  BoxConstraints(minHeight: viewportConstraints.maxHeight),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 50,right: 50),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // Below are for Wrap
+                      // direction: Axis.horizontal,
+                      // spacing: 0, // gap between adjacent chips
+                      // runSpacing: 0, // gap between lines
+                      children: [
+                        SizedBox(height: 20,),
+                        Text('最新課程',style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Container(
+                          //padding: EdgeInsets.only(left: 50),
+                          child: Column(
+                            children: [
+                              BigCard(card: card),
+                              BigCard(card: card),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30,),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ]),
+      )
     );
   }
 }
