@@ -107,14 +107,29 @@ class _MyStatefulWidgetState extends State<LoginPage> with TickerProviderStateMi
                   BoxConstraints(minHeight: viewportConstraints.maxHeight),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Container(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 600),
                       width: 400,
                       height: 500,
                       padding: EdgeInsets.only(left: 50,right: 50),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: enableLoginBT
+                                ? Color(0xFF00ba7c).withOpacity(.6)
+                                : Color(0xFFff4060).withOpacity(.6),
+                            spreadRadius: -50,
+                            blurRadius: 100,
+                            offset: Offset(0, 0), // changes position of shadow
+                          ),
+                        ],
+                      ),
                       child: Card(
-                        elevation: 50,
+                        elevation: 0,
                         color: Color(0xFF1a1a1a),
-                        shadowColor: Color(0xFF000000),
+                        shadowColor: enableLoginBT
+                            ? Color(0xFF00ba7c)
+                            : Color(0xFFff4060),
                         child: Container(
                           padding: EdgeInsets.only(left: 25,right: 25),
                           child: Form(
