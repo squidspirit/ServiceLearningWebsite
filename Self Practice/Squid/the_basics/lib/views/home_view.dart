@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_basics/pages/favorites_page.dart';
 import 'package:the_basics/pages/main_page.dart';
+import 'package:the_basics/pages/auth_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -25,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
         showingPage = FavoritesPage();
         break;
       case 2:
-        showingPage = Scaffold();
+        showingPage = AuthPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
