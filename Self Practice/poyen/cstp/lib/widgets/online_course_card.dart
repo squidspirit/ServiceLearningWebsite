@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
-import 'package:cstp/course_intro.dart';
 import 'package:flutter/material.dart';
 
 class OnlineCourseCard extends StatelessWidget {
@@ -35,8 +34,7 @@ class OnlineCourseCard extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CourseIntro()));
+                  // 當按下時要跳到一個頁面
                 },
                 child: Image.asset(
                   imagePath,

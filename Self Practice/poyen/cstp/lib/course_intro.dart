@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:cstp/widgets/NavBar.dart';
 import 'package:cstp/widgets/course_name_box.dart';
 
-class CourseIntro extends StatefulWidget {
-  const CourseIntro({Key? key}) : super(key: key);
+class CourseIntro extends StatelessWidget {
+  final String imagePath;
+  final String courseName;
+  final String introCtx;
 
-  @override
-  _CourseIntroState createState() => _CourseIntroState();
-}
+  const CourseIntro(
+      {Key? key,
+      required this.imagePath,
+      required this.courseName,
+      required this.introCtx})
+      : super(key: key);
 
-class _CourseIntroState extends State<CourseIntro> {
   @override
   Widget build(BuildContext context) {
-    final scale = MediaQuery.of(context).size.width / 1440.0;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -24,7 +26,10 @@ class _CourseIntroState extends State<CourseIntro> {
         children: <Widget>[
           NavBar(),
           Expanded(
-            child: Body(),
+            child: Body(
+                courseName: courseName,
+                imagePath: imagePath,
+                introCtx: introCtx),
           ),
         ],
       ),
@@ -33,7 +38,16 @@ class _CourseIntroState extends State<CourseIntro> {
 }
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  final String imagePath;
+  final String courseName;
+  final String introCtx;
+
+  const Body(
+      {Key? key,
+      required this.imagePath,
+      required this.courseName,
+      required this.introCtx})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +65,7 @@ class Body extends StatelessWidget {
               height: 60.0 * scale,
             ),
             CourseNameBox(
-              coursename: 'Breaking 基礎教學',
+              coursename: courseName,
             ),
             SizedBox(
               width: 1440.0 * scale,
@@ -67,7 +81,7 @@ class Body extends StatelessWidget {
                     width: 387.0 * scale,
                     height: 471.0 * scale,
                     child: Image.asset(
-                      'assets/images/one_punch.png',
+                      imagePath,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -80,14 +94,7 @@ class Body extends StatelessWidget {
                   child: SizedBox(
                     width: 753.0 * scale,
                     child: Text(
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字假文字'
-                      '假文字假文字假文字假文字假文字假文字假文字假文字',
+                      introCtx,
                       textAlign: TextAlign.left,
                       softWrap: true,
                       style: TextStyle(
@@ -110,14 +117,14 @@ class Body extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // 當按下時要執行的程式碼
+                    // 當按下時要跳到一個頁面
                   },
                   style: ElevatedButton.styleFrom(
+                    foregroundColor: Color(0xff1f6afb),
+                    backgroundColor: Color(0xff1f6afb),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(60.0),
                     ),
-                    primary: Color(0xff1f6afb),
-                    onPrimary: Color(0xff1f6afb),
                     minimumSize: Size(240.0 * scale, 77.0 * scale),
                   ),
                   child: Text(
